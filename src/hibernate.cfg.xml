@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+
+		<property name="hibernate.connection.url">
+			jdbc:mysql://127.0.0.1:3306/library_system?serverTimezone=UTC
+		</property>
+
+		<property name="hibernate.connection.username">
+			root
+		</property>
+
+		<property name="hibernate.connection.password"> 
+		</property>
+
+		<property name="hibernate.show_sql ">
+			true</property>
+
+		<!-- List of XML mapping files -->
+<!-- 		<mapping class="com.referrals.app.dependency.Book" />
+		<mapping class="com.referrals.app.dependency.Student" />
+
+		<mapping resource="Certificate.hbm.xml"/>
+ 		<mapping resource="Employee.hbm.xml"/>
+ 		 -->
+ 		<!-- <mapping class="com.referrals.app.tutorialspoint.Employee"/>
+ 		<mapping class="com.referrals.app.tutorialspoint.Certificate"/> -->
+
+		<!-- <mapping resource="Subject.hbm.xml"/>
+ 		<mapping resource="Exam.hbm.xml"/> -->
+ 		
+ 		<mapping resource="Certificate.hbm.xml"/>
+ 		<mapping resource="Employee.hbm.xml"/>
+ 		
+ 		<mapping class="com.referrals.app.experiment.Subject"/>
+ 		<mapping class="com.referrals.app.experiment.Exam"/>
+ 		<mapping class="com.referrals.app.criteria.Book"/>
+ 		
+	</session-factory>
+</hibernate-configuration>

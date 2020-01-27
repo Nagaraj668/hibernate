@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "com.referrals.app.experiment.Exam" table = "Exam">
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <set name = "subjects" cascade="all">
+         <key column = "exam_id"/>
+         <one-to-many class="com.referrals.app.experiment.Subject"/>
+      </set>
+      
+      <property name = "name" column = "name" type = "string"/>
+      
+   </class>
+
+</hibernate-mapping>
