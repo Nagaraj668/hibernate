@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Employee {
@@ -24,6 +25,18 @@ public class Employee {
 	@JoinTable(name = "employee_certificate", joinColumns = { @JoinColumn(name = "employee_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "certificate_id") })
 	private Set<Certificate> certificates;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "employee_id")
+	private Set<MobileNo> mobileNos;
+
+	public Set<MobileNo> getMobileNos() {
+		return mobileNos;
+	}
+
+	public void setMobileNos(Set<MobileNo> mobileNos) {
+		this.mobileNos = mobileNos;
+	}
 
 	public Employee() {
 		super();
