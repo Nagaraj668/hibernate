@@ -17,9 +17,6 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@org.hibernate.annotations.Entity(
-		dynamicUpdate = true, selectBeforeUpdate = true
-)
 public class Employee {
 
 	@Id
