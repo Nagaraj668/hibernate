@@ -39,6 +39,7 @@
 
 		<mapping class="com.referrals.app.test1.Certificate" />
 		<mapping class="com.referrals.app.test1.MobileNo" />
+		<mapping class="com.referrals.app.test1.Address" />
 		<mapping class="com.referrals.app.test1.Employee" />
 
 	</session-factory>

@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -22,13 +24,25 @@ public class Employee {
 	private String email;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "employee_certificate", joinColumns = { @JoinColumn(name = "employee_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "certificate_id") })
+	@JoinTable(name = "employee_certificate", joinColumns = {
+			@JoinColumn(name = "employee_id") }, inverseJoinColumns = { @JoinColumn(name = "certificate_id") })
 	private Set<Certificate> certificates;
-	
-	@OneToMany(cascade = CascadeType.ALL)
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "employee_id")
 	private Set<MobileNo> mobileNos;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id", referencedColumnName = "employee_id")
+	private Address address;
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	public Set<MobileNo> getMobileNos() {
 		return mobileNos;

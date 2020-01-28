@@ -1,6 +1,5 @@
 package com.referrals.app.test1;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -8,9 +7,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import com.referrals.app.HibernateFactory;
 
@@ -23,14 +22,30 @@ public class EmployeeDao {
 
 		// dao.listCertsHQL(1);
 
-		Employee employee = dao.getEmp(1);
-
-		Set<MobileNo> mobileNos = new HashSet<>();
-		mobileNos.add(new MobileNo("8939980527"));
-		mobileNos.add(new MobileNo("8939980528"));
-
-		employee.setMobileNos(mobileNos);
+		Employee employee = dao.getEmp(2);
+		// employee.getMobileNos().add(new MobileNo("6383414909"));
+		
+		Address address = new Address("tambarm", "chennai");
+		address.setEmployee(employee);
+		
+		employee.setAddress(address);
 		dao.saveEmp(employee);
+	}
+
+	private void getMobileNos(int i) {
+		Session session = HibernateFactory.getAnnotationsFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+
+		try {
+			Set<MobileNo> mobileNos = session.get(Employee.class, i).getMobileNos();
+			for (MobileNo mobileNo : mobileNos) {
+				System.out.println(mobileNo.toString());
+			}
+			transaction.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private Employee getEmp(int i) {
@@ -104,6 +119,7 @@ public class EmployeeDao {
 			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 	}
 }
