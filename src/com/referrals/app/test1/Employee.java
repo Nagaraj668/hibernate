@@ -14,7 +14,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
+@org.hibernate.annotations.Entity(
+		dynamicUpdate = true, selectBeforeUpdate = true
+)
 public class Employee {
 
 	@Id
@@ -28,6 +33,9 @@ public class Employee {
 			@JoinColumn(name = "employee_id") }, inverseJoinColumns = { @JoinColumn(name = "certificate_id") })
 	private Set<Certificate> certificates;
 
+	@OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+	private Set<EmployeeCertificate> employeeCertificates;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "employee_id")
 	private Set<MobileNo> mobileNos;
@@ -35,6 +43,14 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id", referencedColumnName = "employee_id")
 	private Address address;
+
+	public Set<EmployeeCertificate> getEmployeeCertificates() {
+		return employeeCertificates;
+	}
+
+	public void setEmployeeCertificates(Set<EmployeeCertificate> employeeCertificates) {
+		this.employeeCertificates = employeeCertificates;
+	}
 
 	public Address getAddress() {
 		return address;

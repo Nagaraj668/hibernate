@@ -41,6 +41,7 @@
 		<mapping class="com.referrals.app.test1.MobileNo" />
 		<mapping class="com.referrals.app.test1.Address" />
 		<mapping class="com.referrals.app.test1.Employee" />
+		<mapping class="com.referrals.app.test1.EmployeeCertificate" />
 
 	</session-factory>
 </hibernate-configuration>

@@ -1,5 +1,6 @@
 package com.referrals.app.test1;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,17 +20,48 @@ public class EmployeeDao {
 		EmployeeDao dao = new EmployeeDao();
 
 		// dao.saveEmp(new Employee("Nagaraj", "naagrajece13@gmail.com", null));
-
 		// dao.listCertsHQL(1);
 
-		Employee employee = dao.getEmp(2);
-		// employee.getMobileNos().add(new MobileNo("6383414909"));
+		Employee employee = dao.getEmp(1);
 		
-		Address address = new Address("tambarm", "chennai");
-		address.setEmployee(employee);
+		employee.setName("naga");
 		
-		employee.setAddress(address);
 		dao.saveEmp(employee);
+
+		// Certificate certificate = dao.getCert(3);
+
+		// EmployeeCertificate employeeCertificate = new EmployeeCertificate(employee,
+		// certificate, true);
+
+		// dao.saveEmp(employeeCertificate);
+
+		// employee.getMobileNos().add(new MobileNo("6383414909"));
+
+		// Address address = new Address("tambarm", "chennai");
+		// address.setEmployee(employee);
+
+		// employee.setAddress(address);
+		// dao.saveEmp(employee);
+
+		// employee.getMobileNos().add(new MobileNo("9944717618"));
+
+		// dao.saveEmp(employee);
+
+	}
+
+	private Certificate getCert(int i) {
+		Certificate certificate = null;
+		Session session = HibernateFactory.getAnnotationsFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+
+		try {
+			certificate = session.get(Certificate.class, i);
+			transaction.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return certificate;
 	}
 
 	private void getMobileNos(int i) {
@@ -114,7 +146,7 @@ public class EmployeeDao {
 		Transaction transaction = session.beginTransaction();
 
 		try {
-			session.saveOrUpdate(employee);
+			session.update(employee);
 			transaction.commit();
 			session.close();
 		} catch (Exception e) {
