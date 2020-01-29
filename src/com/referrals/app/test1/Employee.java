@@ -14,12 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 @Entity
-@org.hibernate.annotations.Entity(
-		dynamicUpdate = true, selectBeforeUpdate = true
-)
 public class Employee {
 
 	@Id
@@ -28,11 +23,14 @@ public class Employee {
 	private String name;
 	private String email;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "employee_certificate", joinColumns = {
-			@JoinColumn(name = "employee_id") }, inverseJoinColumns = { @JoinColumn(name = "certificate_id") })
-	private Set<Certificate> certificates;
-
+	/*
+	 * @ManyToMany(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinTable(name = "employee_certificate", joinColumns = {
+	 * 
+	 * @JoinColumn(name = "employee_id") }, inverseJoinColumns = { @JoinColumn(name
+	 * = "certificate_id") }) private Set<Certificate> certificates;
+	 */
 	@OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
 	private Set<EmployeeCertificate> employeeCertificates;
 	
@@ -72,11 +70,10 @@ public class Employee {
 		super();
 	}
 
-	public Employee(String name, String email, Set<Certificate> certificates) {
+	public Employee(String name, String email) {
 		super();
 		this.name = name;
 		this.email = email;
-		this.certificates = certificates;
 	}
 
 	public int getId() {
@@ -101,14 +98,6 @@ public class Employee {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Set<Certificate> getCertificates() {
-		return certificates;
-	}
-
-	public void setCertificates(Set<Certificate> certificates) {
-		this.certificates = certificates;
 	}
 
 	@Override

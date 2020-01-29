@@ -12,7 +12,7 @@
 		</property>
 
 		<property name="hibernate.connection.url">
-			jdbc:mysql://127.0.0.1:3306/test_db1?serverTimezone=UTC
+			jdbc:mysql://127.0.0.1:3306/mkying?serverTimezone=UTC
 		</property>
 
 		<property name="hibernate.connection.username">
@@ -42,6 +42,10 @@
 		<mapping class="com.referrals.app.test1.Address" />
 		<mapping class="com.referrals.app.test1.Employee" />
 		<mapping class="com.referrals.app.test1.EmployeeCertificate" />
+
+		<mapping class="com.referrals.app.mkyong.Stock" />
+		<mapping class="com.referrals.app.mkyong.StockCategory" />
+		<mapping class="com.referrals.app.mkyong.Category" />
 
 	</session-factory>
 </hibernate-configuration>
