@@ -12,7 +12,7 @@
 		</property>
 
 		<property name="hibernate.connection.url">
-			jdbc:mysql://127.0.0.1:3306/mkying?serverTimezone=UTC
+			jdbc:mysql://127.0.0.1:3306/test_db2?serverTimezone=UTC
 		</property>
 
 		<property name="hibernate.connection.username">
@@ -22,7 +22,7 @@
 		<property name="hibernate.connection.password">
 		</property>
 
-		<property name="hibernate.show_sql ">
+		<property name="show_sql ">
 			true</property>
 
 		<!-- List of XML mapping files -->
@@ -33,19 +33,16 @@
 
 		<!-- <mapping resource="Subject.hbm.xml"/> <mapping resource="Exam.hbm.xml"/> -->
 
-		<mapping class="com.referrals.app.experiment.Subject" />
-		<mapping class="com.referrals.app.experiment.Exam" />
-		<mapping class="com.referrals.app.criteria.Book" />
-
-		<mapping class="com.referrals.app.test1.Certificate" />
-		<mapping class="com.referrals.app.test1.MobileNo" />
-		<mapping class="com.referrals.app.test1.Address" />
-		<mapping class="com.referrals.app.test1.Employee" />
-		<mapping class="com.referrals.app.test1.EmployeeCertificate" />
-
 		<mapping class="com.referrals.app.mkyong.Stock" />
 		<mapping class="com.referrals.app.mkyong.StockCategory" />
 		<mapping class="com.referrals.app.mkyong.Category" />
+
+		<mapping class="com.referrals.app.test2.Person" />
+		<mapping class="com.referrals.app.test2.Exam" />
+		<mapping class="com.referrals.app.test2.PersonExam" />
+		<mapping class="com.referrals.app.test2.Address" />
+		<mapping class="com.referrals.app.test2.Mobile" />
+		<mapping class="com.referrals.app.test2.Certificate" />
 
 	</session-factory>
 </hibernate-configuration>
