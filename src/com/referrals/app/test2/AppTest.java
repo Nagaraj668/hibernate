@@ -1,5 +1,6 @@
 package com.referrals.app.test2;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,23 @@ public class AppTest {
 	public static void main(String[] args) {
 
 		AppTest appTest = new AppTest();
-		appTest.testPersonAddress();
+		appTest.testTablePerSubclass();
+	}
+
+	private void testTablePerSubclass() {
+		Session session = HibernateFactory.getAnnotationsFactory().openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		try {
+			Employee employee = (Employee)session.get(Employee.class, 17);
+			employee.setSalary(new BigDecimal(74000.00));
+			
+			session.saveOrUpdate(employee);
+			transaction.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void testPersonAddress() {
@@ -52,7 +69,6 @@ public class AppTest {
 					.where(builder.and(builder.greaterThan(root.get("id"), 5), builder.lessThan(root.get("id"), 7)));
 
 			Query<Person> query = session.createQuery(criteriaQuery);
-
 			List<Person> persons = query.getResultList();
 
 			for (Person person : persons) {
