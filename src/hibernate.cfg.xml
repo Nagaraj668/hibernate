@@ -22,8 +22,7 @@
 		<property name="hibernate.connection.password">
 		</property>
 
-		<property name="show_sql ">
-			true</property>
+		<property name="show_sql ">true</property>
 
 		<!-- List of XML mapping files -->
 		<!-- <mapping class="com.referrals.app.dependency.Book" /> <mapping class="com.referrals.app.dependency.Student" 
@@ -43,8 +42,13 @@
 		<mapping class="com.referrals.app.test2.Address" />
 		<mapping class="com.referrals.app.test2.Mobile" />
 		<mapping class="com.referrals.app.test2.Certificate" />
-		
+
 		<mapping class="com.referrals.app.inheritance.Employee" />
+		<mapping class="com.referrals.app.inheritance.Product" />
+		<mapping class="com.referrals.app.inheritance.Book" />
+		<mapping class="com.referrals.app.inheritance.Customer" />
+		<mapping class="com.referrals.app.inheritance.Payment" />
+		<mapping class="com.referrals.app.inheritance.CreditCardPayment" />
 
 	</session-factory>
 </hibernate-configuration>

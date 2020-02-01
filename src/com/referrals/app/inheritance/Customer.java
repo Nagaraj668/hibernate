@@ -1,32 +1,33 @@
 package com.referrals.app.inheritance;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Product {
+public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	
-	@ManyToOne
-	private Customer order;
-	
-	public Product() {
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "order_id")
+	private Set<Payment> payments;
+
+	public Customer() {
 		super();
 	}
 
-	public Product(int id, String name) {
+	public Customer(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 	}
 
@@ -45,4 +46,13 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
+	}
+
 }
